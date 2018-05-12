@@ -28,7 +28,7 @@ var dataArr = {}
 var smsPostObj = {}
 
 // function below to add alert to index page when new SMS posting comes in
-function addAlert() {
+function addAlert(){
   // $(".sms-alert").append(`<div class="alert alert-warning alert-dismissible fade show" role="alert">
   //       <strong>NEW SMS Link</strong> Click <a href="/index">HERE</a> to refresh the page.
   //       <button type="button" class="close" data-dismiss="alert" aria-label="Close">
@@ -36,8 +36,12 @@ function addAlert() {
   //       </button>
   //     </div>`)
   console.log("AddAlert function Runs");
-
+  
 }
+// var validationForHost = twilio.webhook(password, {
+//   host:'slackerflow.herokuapp.com',
+//   protocol:'https'
+// });
 
 
 
@@ -60,36 +64,46 @@ module.exports = function (app) {
         smsPostObj = {
           link: dataArr,
           author: "Mobile User on " + postingStamp,
-          category: "Text Submission",
+          category: "Text Submissions",
           title: "Mobile Submission",
-          description: "Shared link using Slack Text"
+          description: "Shared link using Twilio Number"
         }
-      }
+       }
     );
-
+    
     twiml.redirect("/sms/post");
     res.end(twiml.toString());
     // Ends Conversation
-  }
+  } 
   )
 
-  app.post("/sms/post", function (req, res) {
+  app.post("/sms/post", function(req, res) {
     // console.log("****Redirect Object: "+ req.body.Body);
     db.resources.create({
       title: "Mobile Submission",
       description: "Shared link via Slack Text",
       category: "Mobile Link",
-      link: req.body.Body,
-      author: "Mobile User on " + postingStamp
+      link : req.body.Body,
+      author : "Mobile User on " + postingStamp
 
     })
-      .then(function (dbPost) {
+    .then(function(dbPost) {
         res.json(dbPost);
         addAlert()
         console.log("New Text Submission posted to Database. Refresh Page.");
-
+        
       });
   });
 
 
+// module.exports = router
+
+
+
 }
+
+
+
+// http.createServer(app).listen(1337, () => {
+//   console.log('Express server listening on port 1337');
+// })

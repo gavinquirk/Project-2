@@ -5,22 +5,8 @@
   height:250px;
 }
 
-.modal-body {
-  position: relative;
-  top: 30px;
-  bottom: 20px;
-  width: 100%;
-  font-weight: 300;
-  overflow: auto;
-  margin-bottom: 20px;
-}
 #postBtn{
-  margin-left: -70%;
-  padding: 5px 10px;
-}
-
-#submitBtn{
-  float: none
+  margin-left: -45%
 }
 
 button.submit {

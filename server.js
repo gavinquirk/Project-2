@@ -25,14 +25,21 @@ app.use(bodyParser.json());
 // Static directory
 app.use(express.static("public"));
 
+// var twilioroutes = require('./routes/twilio-routes.js')
+
+// ...
+
+// app.use('/', twilioroutes)
+// app.use('/sms', twilioroutes)
+// app.use('/sms/post', twilioroutes)
 
 // Routes
 // =============================================================
 require("./routes/api-routes.js")(app);
 require("./routes/html-routes.js")(app);
 
-// require("./routes/slack-routes.js")(app);
-// require("./routes/twilio-routes.js")(app);
+require("./routes/slack-routes.js")(app);
+require("./routes/twilio-routes.js")(app);
 
 
 // Syncing our sequelize models and then starting our Express app
@@ -42,3 +49,23 @@ db.sequelize.sync().then(function() {
     console.log("App listening on localhost:" + PORT);
   });
 });
+
+
+// twilio integration
+
+// const http = require('http');
+// const MessagingResponse = require('twilio').twiml.MessagingResponse;
+
+
+// app.post('/sms', (req, res) => {
+//   const twiml = new MessagingResponse();
+
+//   twiml.message('This is a Reply');
+
+//   res.writeHead(200, {'Content-Type': 'text/xml'});
+//   res.end(twiml.toString());
+// });
+
+// http.createServer(app).listen(1337, () => {
+//   console.log('Express server listening on port 1337');
+// });

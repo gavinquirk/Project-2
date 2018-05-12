@@ -1,5 +1,5 @@
 
-$(document).ready(function () {
+$(document).ready(function() {
   // Gets an optional query string from our url (i.e. ?post_id=23)
   var url = window.location.search;
   var postId;
@@ -26,10 +26,10 @@ $(document).ready(function () {
   postCategorySelect.val("Personal");
   // Adding an event listener for when the form is submitted
   $(cmsForm).on("submit", function handleFormSubmit(event) {
-
-
+    
+    
     event.preventDefault()
-
+    
     // Wont submit the post if we are missing a body or a title
     // if (!titleInput.val().trim() || !bodyInput.val().trim()) {
     //   return;
@@ -39,11 +39,11 @@ $(document).ready(function () {
       title: titleInput.val(),
       description: bodyInput.val(),
       category: postCategorySelect.val(),
-      author: authorInput.val(),
-      link: linkInput.val()
+      author : authorInput.val(),
+      link : linkInput.val()
     };
     // return newPost
-    console.log("Retreived Data:::: " + newPost);
+    console.log("Retreived Data:::: "+ newPost);
 
     // If we're updating a post run updatePost to update a post
     // Otherwise run submitPost to create a whole new post
@@ -52,29 +52,24 @@ $(document).ready(function () {
       updatePost(newPost);
     }
     else {
-      // $('#modalPost').modal('hide').then(function(){
       submitPost(newPost);
-    // })
     }
-
-
+    
+    
   });
 
   // Submits a new post and brings user to blog page upon completion
   function submitPost(Post) {
-    // Hides post before Refresh
-    // $('#modalPost').modal('hide').then(function(){
-    // Ends hiding of post
-    $.post("/api/posts/", Post, function () {
+    $.post("/api/posts/", Post, function() {
       window.location.href = "/index";
     });
     console.log(Post);
-
+    
   }
 
   // Gets post data for a post if we're editing
   function getPostData(id) {
-    $.get("/api/posts/" + id, function (data) {
+    $.get("/api/posts/" + id, function(data) {
       if (data) {
         // If this post exists, prefill our cms forms with its data
         titleInput.val(data.title);
@@ -96,7 +91,7 @@ $(document).ready(function () {
       url: "/api/posts",
       data: post
     })
-      .then(function () {
+      .then(function() {
         window.location.href = "/index";
       });
   }

@@ -1,5 +1,8 @@
 $(document).ready(function () {
  
+
+  // getPosts();
+
   var catArr = [
 
     {
@@ -73,12 +76,12 @@ $(document).ready(function () {
       description: "Enter text here",
     },
     {
-      name: "Slack",
+      name: "Slack Submissions",
       image: "./images/slacksubmissions.png",
       description: "Enter text here",
     },
     {
-      name: "Twilio",
+      name: "Text Submissions",
       image: "./images/textsubmissions.png",
       description: "Enter text here",
     }
@@ -90,28 +93,28 @@ $(document).ready(function () {
     var image = catArr[i].image;
     var description = catArr[i].description;
 
-    //   $('#catCard').append(`
-    //         <div class="col-md-3">
-    //         <div class="card mb-4 box-shadow">
-    //           <img class="card-img-top" data-src="holder.js/100px225?theme=thumb&amp;bg=55595c&amp;fg=eceeef&amp;text=Thumbnail" alt="Thumbnail [100%x225]"
-    //             style="height: 75px; width: 100%; display: block;" src=${image} data-holder-rendered="true">
-    //           <div class="card-body">
-    //             <h4 class = "text-center">${name}</h4>
-    //             <p class="card-text"></p>
-    //             <div class="d-flex justify-content-between align-items-center">
-    //               <div class="btn-group">
-    //                 <button type="button" class="btn btn-sm btn-outline-secondary name center-block" value="${name}">View</button>
-    //               </div>
-    //             </div>
-    //           </div>
-    //         </div>
-    //       </div>`)
+  //   $('#catCard').append(`
+  //         <div class="col-md-3">
+  //         <div class="card mb-4 box-shadow">
+  //           <img class="card-img-top" data-src="holder.js/100px225?theme=thumb&amp;bg=55595c&amp;fg=eceeef&amp;text=Thumbnail" alt="Thumbnail [100%x225]"
+  //             style="height: 75px; width: 100%; display: block;" src=${image} data-holder-rendered="true">
+  //           <div class="card-body">
+  //             <h4 class = "text-center">${name}</h4>
+  //             <p class="card-text"></p>
+  //             <div class="d-flex justify-content-between align-items-center">
+  //               <div class="btn-group">
+  //                 <button type="button" class="btn btn-sm btn-outline-secondary name center-block" value="${name}">View</button>
+  //               </div>
+  //             </div>
+  //           </div>
+  //         </div>
+  //       </div>`)
 
-    // }
+  // }
 
 
 
-    $('#catCard').append(`
+$('#catCard').append(`
 <div class="col-md-3">
   <div>
     <a href="#">
@@ -119,7 +122,7 @@ $(document).ready(function () {
     </a>
   </div>
 </div>`)
-  }
+}
 
 
   // blogContainer holds all of our posts
@@ -138,7 +141,7 @@ $(document).ready(function () {
   postCategorySel.on("click", handleCategoryChange2);
 
   // $(document).on("click", ".name", handleCategoryChange2);
-
+ 
   var post;
 
   // This function grabs posts from the database and updates the view
@@ -167,7 +170,7 @@ $(document).ready(function () {
       .then(function () {
         getPosts(category)
       });
-  }
+  }  
 
   // InitializeRows handles appending all of our constructed post HTML inside blogContainer
   function initializeRows() {
@@ -189,7 +192,7 @@ $(document).ready(function () {
     newPostCardHeading.addClass("card-header bg-light");
     var downVoteBtn = $("<button>");
     downVoteBtn.text("Down");
-    downVoteBtn.addClass("downVote " + post.category + " btn btn-danger");
+    downVoteBtn.addClass("downVote "+post.category+" btn btn-danger");
     $('#downVoteBtn').on('click', function () {
       Post.newVoteCount--
     })
@@ -205,20 +208,22 @@ $(document).ready(function () {
     // Upvote Button Creation
     var upBtn = $("<button>");
     upBtn.text("Up");
-    upBtn.addClass("upBtn " + post.category + " btn btn-default btn-outline-success");
+    upBtn.addClass("upBtn "+post.category+" btn btn-default btn-outline-success");
 
-
+    // JEREMY WORK
+    // COMMENTED OUT DUMMY editBtn FOR CLEANING UP REDUNDANT CODE
     // Added attribute id 'voteCounter' to newVoteCount
-    newVoteCount.attr('id', 'voteCounter');
-    var editBtn = $("<button>");
-    editBtn.text("Upvote");
-    editBtn.addClass("edit btn btn-default btn-outline-success");
+    // newVoteCount.attr('id', 'voteCounter');
+    // var editBtn = $("<button>");
+    // editBtn.text("Upvote");
+    // editBtn.addClass("edit btn btn-default btn-outline-success");
+    // END JEREMY WORK
 
 
     var newPostTitle = $("<h2>");
     var newPostDate = $("<small>");
     var newPostCategory = $("<h5>");
-    var newPostLink = $("<a href=" + post.link + " target='_blank'>")
+    var newPostLink = $("<a target='_blank' href=" + post.link + ">")
     newPostLink.text(post.link)
     newPostCategory.text(post.category);
     newPostCategory.css({
@@ -277,7 +282,7 @@ $(document).ready(function () {
 
 
   // This function finds id of the voted post, and calls the put request function
-  function handlePostUpvote() {
+  function handlePostUpvote() { 
     var currentPost = $(this)
       .parent()
       .parent()
@@ -300,7 +305,7 @@ $(document).ready(function () {
   function displayEmpty() {
     blogContainer.empty();
     var messageH2 = $("<h2>");
-    messageH2.css({ "text-align": "center", "margin-top": "50px" });
+    messageH2.css({ "text-align": "center", "margin-top": "50px","color":"gray" });
     messageH2.html('No posts yet for this category. Click "Add Post" at top of page');
     blogContainer.append(messageH2);
   }
@@ -318,8 +323,8 @@ $(document).ready(function () {
   }
 
 
-  // JEREMY WORK BELOW 
-  // PUT CLOSING TAG ON LINE 361 TO RESOLVE LINTING ERROR
+// JEREMY WORK BELOW 
+// PUT CLOSING TAG ON LINE 361 TO RESOLVE LINTING ERROR
 
   // Scroll to function. When card button is clicked, go to div associated with the .blog-container class. 
   $(".name").click(function () {
@@ -329,10 +334,10 @@ $(document).ready(function () {
     },
       'slow');
   });
-  // temporary sms alert function, not working yet
-  // $(".sms-alert").click(function(){
-  //   $(".alert").alert('close')
-  // })  
+    // temporary sms alert function, not working yet
+    // $(".sms-alert").click(function(){
+    //   $(".alert").alert('close')
+    // })  
 });
 
 // });
