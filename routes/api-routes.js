@@ -57,7 +57,6 @@ module.exports = function(app) {
       category: req.body.category,
       link : req.body.link,
       author : req.body.author
-
     })
     .then(function(dbPost) {
         res.json(dbPost);
