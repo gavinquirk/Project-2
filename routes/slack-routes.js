@@ -9,7 +9,7 @@ const https = require('https');
 var db = require("../models");
 const moment = require("moment");
 const express = require('express');
-var https = require("https")
+// var https = require("https")
 const bodyParser = require('body-parser');
 var urlencodedParser = bodyParser.urlencoded({ extended: false })
 var userMsg
@@ -104,43 +104,23 @@ slackEvents.on('app_mention', (message, body) => {
     var url = str.slice(1,n)
     console.log("Sliced message: " +url);
     db.resources.create({
-      title: "Slack Submission",
-      description: "Shared link via Slackbot",
-      category: "Slack Link",
+      title: "Slacked Link",
+      description: "Link via via Slackbot",
+      category: "Slack Submission",
       link : url,
       author : "Slack User on " + postingStamp
 
     }).then(function(){
       console.log("posted to Database")
-    })
-
-
-
-    
+    })    
     // Respond to the message back in the same channel
-    slack.chat.postMessage({ channel: message.channel, text: `:tada: Hooray! Thanks <@${message.user}>, your post has been added to www.slackerflow.herokuapp.com !  ` })
+    slack.chat.postMessage({ channel: message.channel, text: `:tada: Hooray! Thanks <@${message.user}>, your post has been added to https://slackerflow.herokuapp.com !  ` })
       .catch(console.error);
-    // // Respond to the message back in the same channel
-    // slack.chat.postMessage(message.channel, text:`I Received your message`)
-    //   .catch(console.error);
+   
   }
-  // console.log(message);
-  
   
 });
 
-// *** Responding to reactions with the same emoji ***
-// slackEvents.on('reaction_added', (event, body) => {
-//   // Initialize a client
-//   const slack = getClientByTeamId(body.team_id);
-//   // Handle initialization failure
-//   if (!slack) {
-//     return console.error('No authorization found for this team. Did you install this app again after restarting?');
-//   }
-//   // Respond to the reaction back with the same emoji
-//   slack.chat.postMessage(event.item.channel, `:${event.reaction}:`)
-//     .catch(console.error);
-// });
 
 // *** Handle errors ***
 slackEvents.on('error', (error) => {
@@ -155,11 +135,3 @@ ${JSON.stringify(error.body)}`);
 
 
 }
-
-
-
-// Start the express application
-// const port = process.env.PORT || 3000;
-// http.createServer(app).listen(port, () => {
-//   console.log(`server listening on port ${port}`);
-// });

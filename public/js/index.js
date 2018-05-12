@@ -4,87 +4,84 @@ $(document).ready(function () {
 
     {
       name: "General Tools",
-      image: "./images/generaltools.jpg",
+      image: "./images/generaltools.png",
       description: "Enter text here",
     },
     {
       name: "Teaching Resources",
-      image: "./images/teachingresources.jpg",
+      image: "./images/teachingresources.png",
       description: "Enter text here",
     },
     {
       name: "CSS",
-      image: "./images/css.jpg",
+      image: "./images/css.png",
       description: "Enter text here",
     },
     {
       name: "Testing",
-      image: "./images/testing.jpg",
+      image: "./images/testing.png",
       description: "Enter text here",
     },
     {
       name: "JavaScript",
-      image: "./images/javascript.jpg",
-      description: "Enter text here",
-    },
-    {
-      name: "Articles",
-      image: "/images/articles.jpg",
+      image: "./images/javascript.png",
       description: "Enter text here",
     },
     {
       name: "APIs",
-      image: "./images/api.jpg",
+      image: "./images/api.png",
       description: "Enter text here",
     },
     {
       name: "Databases",
-      image: "./images/databases.jpg",
+      image: "./images/databases.png",
       description: "Enter text here",
     },
     {
       name: "NPM Packages",
-      image: "./images/npmpackages.jpg",
+      image: "./images/npmpackages.png",
       description: "Enter text here",
     },
     {
       name: "Templates",
-      image: "./images/templates.jpg",
+      image: "./images/templates.png",
       description: "Enter text here",
     },
     {
       name: "Common Issues",
-      image: "./images/commonissues.jpg",
+      image: "./images/commonissues.png",
       description: "Enter text here",
     },
     {
       name: "Job Resources",
-      image: "./images/jobresources.jpg",
+      image: "./images/jobresources.png",
       description: "Enter text here",
     },
     {
       name: "HTML",
-      image: "./images/html.jpg",
+      image: "./images/html.png",
       description: "Enter text here",
     },
     {
       name: "Random",
-      image: "./images/random.jpg",
+      image: "./images/random.png",
+      description: "Enter text here",
+    },
+    {
+      name: "Podcasts",
+      image: "./images/podcasts.png",
+      description: "Enter text here",
+    },
+    {
+      name: "Slack",
+      image: "./images/slacksubmissions.png",
+      description: "Enter text here",
+    },
+    {
+      name: "Twilio",
+      image: "./images/textsubmissions.png",
       description: "Enter text here",
     }
-
-    // {
-    //   name: "Slack",
-    //   image: "https://upload.wikimedia.org/wikipedia/commons/9/99/Unofficial_JavaScript_logo_2.svg",
-    //   description: "Enter text here",
-    // },
-    // {
-    //   name: "Twilio",
-    //   image: "https://upload.wikimedia.org/wikipedia/commons/9/99/Unofficial_JavaScript_logo_2.svg",
-    //   description: "Enter text here",
-    // }
-
-
   ]
 
 
@@ -93,28 +90,28 @@ $(document).ready(function () {
     var image = catArr[i].image;
     var description = catArr[i].description;
 
-  //   $('#catCard').append(`
-  //         <div class="col-md-3">
-  //         <div class="card mb-4 box-shadow">
-  //           <img class="card-img-top" data-src="holder.js/100px225?theme=thumb&amp;bg=55595c&amp;fg=eceeef&amp;text=Thumbnail" alt="Thumbnail [100%x225]"
-  //             style="height: 75px; width: 100%; display: block;" src=${image} data-holder-rendered="true">
-  //           <div class="card-body">
-  //             <h4 class = "text-center">${name}</h4>
-  //             <p class="card-text"></p>
-  //             <div class="d-flex justify-content-between align-items-center">
-  //               <div class="btn-group">
-  //                 <button type="button" class="btn btn-sm btn-outline-secondary name center-block" value="${name}">View</button>
-  //               </div>
-  //             </div>
-  //           </div>
-  //         </div>
-  //       </div>`)
+    //   $('#catCard').append(`
+    //         <div class="col-md-3">
+    //         <div class="card mb-4 box-shadow">
+    //           <img class="card-img-top" data-src="holder.js/100px225?theme=thumb&amp;bg=55595c&amp;fg=eceeef&amp;text=Thumbnail" alt="Thumbnail [100%x225]"
+    //             style="height: 75px; width: 100%; display: block;" src=${image} data-holder-rendered="true">
+    //           <div class="card-body">
+    //             <h4 class = "text-center">${name}</h4>
+    //             <p class="card-text"></p>
+    //             <div class="d-flex justify-content-between align-items-center">
+    //               <div class="btn-group">
+    //                 <button type="button" class="btn btn-sm btn-outline-secondary name center-block" value="${name}">View</button>
+    //               </div>
+    //             </div>
+    //           </div>
+    //         </div>
+    //       </div>`)
 
-  // }
+    // }
 
 
 
-$('#catCard').append(`
+    $('#catCard').append(`
 <div class="col-md-3">
   <div>
     <a href="#">
@@ -122,7 +119,7 @@ $('#catCard').append(`
     </a>
   </div>
 </div>`)
-}
+  }
 
 
   // blogContainer holds all of our posts
@@ -139,8 +136,9 @@ $('#catCard').append(`
 
   // postCategorySelect.on("change", handleCategoryChange); -- old code related to dropdown
   postCategorySel.on("click", handleCategoryChange2);
+
   // $(document).on("click", ".name", handleCategoryChange2);
- 
+
   var post;
 
   // This function grabs posts from the database and updates the view
@@ -169,7 +167,7 @@ $('#catCard').append(`
       .then(function () {
         getPosts(category)
       });
-  }  
+  }
 
   // InitializeRows handles appending all of our constructed post HTML inside blogContainer
   function initializeRows() {
@@ -188,10 +186,10 @@ $('#catCard').append(`
     var newPostCard = $("<div>");
     newPostCard.addClass("card");
     var newPostCardHeading = $("<div>");
-    newPostCardHeading.addClass("card-header");
+    newPostCardHeading.addClass("card-header bg-light");
     var downVoteBtn = $("<button>");
     downVoteBtn.text("Down");
-    downVoteBtn.addClass("downVote "+post.category+" btn btn-danger");
+    downVoteBtn.addClass("downVote " + post.category + " btn btn-danger");
     $('#downVoteBtn').on('click', function () {
       Post.newVoteCount--
     })
@@ -207,7 +205,7 @@ $('#catCard').append(`
     // Upvote Button Creation
     var upBtn = $("<button>");
     upBtn.text("Up");
-    upBtn.addClass("upBtn "+post.category+" btn btn-default btn-outline-success");
+    upBtn.addClass("upBtn " + post.category + " btn btn-default btn-outline-success");
 
 
     // Added attribute id 'voteCounter' to newVoteCount
@@ -279,7 +277,7 @@ $('#catCard').append(`
 
 
   // This function finds id of the voted post, and calls the put request function
-  function handlePostUpvote() { 
+  function handlePostUpvote() {
     var currentPost = $(this)
       .parent()
       .parent()
@@ -303,7 +301,7 @@ $('#catCard').append(`
     blogContainer.empty();
     var messageH2 = $("<h2>");
     messageH2.css({ "text-align": "center", "margin-top": "50px" });
-    messageH2.html("No posts yet for this category, navigate <a href='/post'>here</a> in order to create a new post.");
+    messageH2.html('No posts yet for this category. Click "Add Post" at top of page');
     blogContainer.append(messageH2);
   }
 
@@ -320,20 +318,21 @@ $('#catCard').append(`
   }
 
 
-// JEREMY WORK BELOW 
-// PUT CLOSING TAG ON LINE 361 TO RESOLVE LINTING ERROR
+  // JEREMY WORK BELOW 
+  // PUT CLOSING TAG ON LINE 361 TO RESOLVE LINTING ERROR
 
   // Scroll to function. When card button is clicked, go to div associated with the .blog-container class. 
   $(".name").click(function () {
+    $('.blog-container').css('margin', '5% 0')
     $('html,body').animate({
-      scrollTop: $(".blog-container").offset().top
+      scrollTop: $(".blog-container").offset().top -100
     },
       'slow');
   });
-    // temporary sms alert function, not working yet
-    // $(".sms-alert").click(function(){
-    //   $(".alert").alert('close')
-    // })  
+  // temporary sms alert function, not working yet
+  // $(".sms-alert").click(function(){
+  //   $(".alert").alert('close')
+  // })  
 });
 
 // });

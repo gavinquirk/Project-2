@@ -9,9 +9,12 @@
   <link rel="stylesheet" href="css/styles.css" media="screen" title="no title">
   <script src="https://code.jquery.com/jquery.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+  <script src="js/parallax.min.js"></script>
 </head>
 
 <body>
+
+    <div  data-parallax="scroll" data-image-src="../images/post-background1.png">
   <div class="container">
     <div class="row">
       <div class="row">
@@ -36,19 +39,22 @@
             <div class="form-group">
               <label for="category">Select Category:</label>
               <select class="custom-select" id="category">
-                <option value="General Tools">General Tools</option>
-            <option value="Teaching Resource">Teaching Resource</option>
-            <option value="CSS">CSS</option>
-            <option value="Testing">Testing</option>
-            <option value="Random">Random</option>
-            <option value="JS">JS</option>
-            <option value="Articles">Articles</option>
-            <option value="API">API</option>
-            <option value="Databases">Databases</option>
-            <option value="NPM Packages"> NPM Packages</option>
-            <option value="Templates">Templates</option>
-            <option value="Common Issues">Common Issues</option>
-            <option value="Job Resource">Job Resource</option>
+                  <option value="General Tools">General Tools</option>
+                  <option value="Teaching Resource">Teaching Resource</option>
+                  <option value="CSS">CSS</option>
+                  <option value="Testing">Testing</option>
+                  <option value="Random">Random</option>
+                  <option value="JS">JS</option>
+                  <option value="Articles">Articles</option>
+                  <option value="API">API</option>
+                  <option value="Databases">Databases</option>
+                  <option value="NPM Packages"> NPM Packages</option>
+                  <option value="Templates">Templates</option>
+                  <option value="Common Issues">Common Issues</option>
+                  <option value="Job Resource">Job Resource</option>
+                  <option value="Text Submission">Text Submission</option>
+                  <option value="Slack Submission">Slack Submission</option>
+                  <option value="Podcasts">Podcasts</option>
               </select>
             </div>
             <br />
@@ -57,6 +63,7 @@
         </form>
       </div>
     </div>
+  </div>
   </div>
   <!-- Custom Script -->
   <script src="js/post.js" type="text/javascript"></script>
