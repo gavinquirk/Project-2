@@ -1,8 +1,5 @@
 $(document).ready(function () {
  
-
-  getPosts();
-
   var catArr = [
 
     {
